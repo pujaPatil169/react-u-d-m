@@ -1,0 +1,217 @@
+//all the dom events that exists outside of react also exist in the world of react 
+//this is the default behavior of a form.
+
+When you submit a form,
+
+the default behavior is that it sends a request somewhere.
+
+I haven't specified where that request should be,
+
+because I don't want it to send a request,
+
+but it still just refreshes the same page we're on.
+
+So normally what we do
+
+is add in an event parameter here right?
+
+//event handler and event object
+
+<button id="myButton">Click me</button>
+
+  <script>
+    // Event Handler
+    function handleClick(event) {
+      // Event Object Properties
+      console.log("Event type:", event.type);       // 'click'
+      console.log("Element clicked:", event.target); // <button>
+      console.log("Mouse position:", event.clientX, event.clientY); // X and Y coordinates
+    }
+
+    // Get the button element
+    const button = document.getElementById("myButton");
+
+    // Attach Event Handler to the 'click' event
+    button.addEventListener("click", handleClick);
+  </script>
+
+Event Object (event): In the handleClick function, the event parameter contains information about the event. You don't have to pass it manually—JavaScript automatically passes the event object to event handlers.
+event.type: Shows the type of event (click in this case).
+event.target: Refers to the HTML element that triggered the event (<button> in this case).
+event.clientX and event.clientY: Give the mouse position when the click occurred.
+Event Handler (handleClick): This function is executed whenever the button is clicked. It uses the event object to print details about the event in the console.
+
+//component cannot change the value of it's props 
+//props are not supposed to be changed from withing the component that receives the props this brings us to state 
+//statte is data specific to any instance of the component and it can change
+//anytime we have data that we want to change within  a component we propabaly gonna need to involve state 
+//whenever state changes for a given component the component is redrawn or re-rendered on the page 
+//any time we want data change and we want to see that change reflected we want to use state 
+//to add state into a component we use a special function that comes with react called useState
+//useState is one example of react hook 
+//hook is basically a functiion that react gives us that we can then choose to incorporate into our own components to add some functionality in 
+//the most common hook is useState it adds state into a component
+//hooks --they all start with the word use 
+
+//can we have multipple pieces of state within a given component?-yes you can have 
+//if i want to add another piece of state in i just call useState again ,
+//everytime i call useState it makes me a new seperate piece of state 
+//you can use useState hook as many times as you want within a given component 
+//that multiple states within a single component has nothing to do with each other they are completly siloed off that is they are seperate have nothing to do with one another 
+//How our components are rendered/lifecycle of compponent ?
+//remember component is just a functiion and is gonna be executed by react 
+//primitive data types?
+//they are most basic type of data in programming langauges ,they represent single value and are not composed of other objects or methods ,primitiv
+//data types are immutable ,meaning there values cannot be changed once created ,each 
+//langauge has it's own set of primitiv data type ,but in javaascript the common set of primitive data types are\
+//string,numbere,boolean,undefined,null,bigint,symbol
+
+//material UI is react components library -- it provides readymadde components i.e ready to use components that we can use in our projects
+//just like bootstrap is for css it is similar concept material UI is for react
+
+//the things in sx that is that object inside sx does not have css it is enhnced version of css it is ,it is javaascript built on top of css
+//sx is a way to provide custom styles 
+
+//margin:0 auto ---centerss the content
+
+//aditionally we have to use useEffect in order to sync our data with local storage  whenever state changes  
+
+useEffect:
+
+useEffect is a React hook that lets you perform side effects in function components (like data fetching, setting up subscriptions, or interacting with browser APIs, such as local storage).
+Why use useEffect for syncing data with local storage?
+The key reason is that local storage operations are side effects, meaning they interact with the external environment (the browser's storage) rather than directly affecting the React component's internal state.
+
+When a React component is updated (e.g., state changes), useEffect can be used to trigger code that will run after the render. This is important for syncing data to local storage because you want to ensure the local storage is updated when the component's state changes.
+
+Example:
+jsx
+Copy code
+import React, { useState, useEffect } from 'react';
+
+export default function MyComponent() {
+  const [data, setData] = useState(() => {
+    // Initial load: Check localStorage for saved data
+    return localStorage.getItem('myData') || '';
+  });
+
+  useEffect(() => {
+    // Whenever 'data' changes, save it to localStorage
+    localStorage.setItem('myData', data);
+  }, [data]); // Dependency array ensures effect runs when 'data' changes
+}
+
+//inputs----adonrnment----startAdornment and endAdornment ,endAdornment will go to end of the input for ex eyebutton on password input fielsd  is an example of endAdornment
+
+
+
+//style attribute--<h1 style={{color:"red"}} >blah</h1> we do this in react first curly brace in style is to escape jsx and inside one is an js object to write styles 
+//we use style attribute for dynamic style we can add it to the all the elements 
+ //So, I wouldn't put any regular styles in this object.
+
+If they're not gonna change, put them in the CSS style sheet
+
+with the rest of your styles.
+
+If I want everything in here to have the same font,
+
+the same, you know, border, whatever it is,
+
+if it's not gonna change, just put it in a style sheet.
+
+If it's dynamic in any way though, use the style attribute
+
+//useState
+
+we can have multiple pices of states within a same component
+
+//everytime i add usestate in my component it makes me new seperate piece of state,those two pices will be completely sailod of from one another they are not at all relatedd they havve nothing to do with one another 
+
+//we use filter method for deleting element from an array of object in react or may be in vanila js as well , filter method expects an  callback that returns boolean 
+
+//Yes, you can pass functions as props from a parent component to child components in React. This is a common pattern used to allow child components to trigger actions or update the state in the parent component.
+
+
+//react component mount ,demount , useEffect hook 
+The two lines you mentioned are related to how React components handle side effects when they are mounted (created) and unmounted (removed):
+
+1. Async Operations Like AJAX Requests on Component Mount
+When a component is mounted, it is added to the DOM, and this is a good place to start asynchronous operations like fetching data from an API using AJAX or fetch. You can initiate these operations in a React class component using the componentDidMount lifecycle method, or in a functional component using the useEffect hook.
+Example:
+jsx
+Copy code
+useEffect(() => {
+  // Perform AJAX request
+  fetchData();
+}, []); // Empty array ensures this runs only on mount
+2. Doing Things When a Component Is About to Be Unmounted
+When a component is unmounted, it is removed from the DOM. At this point, any ongoing async operations, event listeners, or subscriptions should be cleaned up to prevent memory leaks or unintended behavior. This cleanup can be handled in the componentWillUnmount method (for class components) or as a return function in useEffect (for functional components).
+Example:
+jsx
+Copy code
+useEffect(() => {
+  const fetchData = async () => { /* async operations */ };
+  
+  fetchData();
+
+  return () => {
+    // Cleanup logic, like cancelling an API call or clearing timers
+    cleanUp();
+  };
+}, []); // Cleanup occurs when component unmounts
+Summary:
+Mount: Start async operations like API calls.
+Unmount: Cleanup those operations (cancel requests, clear listeners) to avoid issues like memory leaks.
+
+
+In JavaScript and many other programming languages, functions are treated as objects. This means that functions can have properties and methods, just like objects, and they can be assigned to variables, passed as arguments to other functions, or returned from other functions.
+
+Here’s why functions are considered objects:
+
+First-class citizens: Functions in JavaScript are first-class objects, meaning they can be passed around as arguments, returned from functions, or stored in variables.
+Callable objects: Unlike regular objects, functions can be invoked or "called" using parentheses.
+Properties and methods: Since functions are objects, they can have properties. For example, a function can have a length property (which indicates how many parameters it expects) or methods like call() and apply().
+Example:
+
+javascript
+Copy code
+function greet(name) {
+  console.log("Hello, " + name);
+}
+
+greet.language = "English";  // Adding a property to a function
+
+console.log(greet.language); // Output: English
+Here, greet is a function, but it behaves like an object by holding properties.
+
+The reduce() method in JavaScript is used to reduce an array to a single value by applying a reducer function to each element of the array, one by one. It processes each element in sequence and accumulates the result.
+
+Syntax:
+javascript
+Copy code
+array.reduce((accumulator, currentValue, index, array) => {
+  // Return the updated accumulator
+}, initialValue);
+Parameters:
+accumulator: Accumulates the callback's return values. It is the result of the previous iteration or the initial value.
+currentValue: The current element being processed in the array.
+index (optional): The index of the current element.
+array (optional): The array on which reduce() was called.
+initialValue (optional): The initial value of the accumulator. If omitted, the first element of the array is used as the initial accumulator, and the iteration starts from the second element.
+Example:
+javascript
+Copy code
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((acc, cur) => acc + cur, 0);
+console.log(sum);  // Output: 10
+Here, reduce() adds all the elements of the numbers array, starting from an initial value of 0
+
+Subtract all numbers in an array:
+
+const numbers = [175, 50, 25];
+
+document.getElementById("demo").innerHTML = numbers.reduce(myFunc);
+
+function myFunc(total, num) {
+  return total - num;
+}

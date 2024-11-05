@@ -1,0 +1,389 @@
+/vanilla javascript --plain javascript code without any third party tools
+as our application grow working with dom can become complex and challenging
+npm run dev--this command will launch a webserver at this address localhost:port/
+src-source folder this is source code of our application
+tsconfig.json -- here we have a bunch of settings for telling the typescript compiler how to compile our code to javascript
+extenstion of typescript files should be either tsx or ts
+ts--plain typescript files
+tsx--react components
+there are two ways to create a react component by javascript class or by functiion
+
+JSX (JavaScript XML) is a syntax extension for JavaScript, commonly used with React to describe what the UI should look like. It allows you to write HTML elements directly within JavaScript code, making the code easier to understand and maintain.
+
+For example, in JSX, instead of writing HTML in separate files, you write something like this:
+
+jsx--javascript XML
+
+const element = <h1>Hello, world!</h1>;
+JSX allows mixing HTML-like code with JavaScript logic, making it simple to write components in a declarative style. Under the hood, JSX is transformed into regular JavaScript objects representing the DOM elements, so it’s not a new templating language but rather syntactic sugar to help you write React components more easily.
+
+Key points:
+
+Looks like HTML but is written within JavaScript.
+Needs to be compiled (usually by Babel) into React createElement function calls.
+Can embed JavaScript expressions within {} in the JSX code.
+For example:
+
+jsx
+
+const name = 'John';
+const greeting = <h1>Hello, {name}!</h1>;
+
+. --period it means current
+./ current folder
+hmr--hot module replacement
+VITE--under the hood moniters our file for changes whenever we make changes it automaticcally refreshes our page in the  browser
+in real world application  a component can have behaviour
+with jsx we can easily describe the user interface of our application with html and javascript
+
+//React is a javascript library which helps us to make dynamic and interactive user interfaces
+
+//writing react--we usually want a server involved ,we want webpack,we want Babel so easiest way to get up and running is to use a tool called codesandbox this is in the browser, show how to run react on in a server on your own machine
+in sandbox file structure is like below
+
+public directory--html
+src/source directory--js files /react code files,this is where we will write all of our react code ,all of our individual components will go in here
+
+is use the ES6 module syntax that allows us
+
+to import and export functionality between files,using ES6 modules.
+
+It's a very easy way of sharing code between files.
+
+And it's what we use in the world of React.
+
+Webpack is powering it behind the scenes.You import and export code
+
+using the import and export syntax.
+
+So we don't use the node imports,
+
+module exports, all that stuff.And we have two different ways of exporting.
+
+We can do a regular export, or we can do a default export.
+
+And a default export is the most common
+
+when you're writing a React component.
+
+It's just like with the node imports and exports
+
+that we learned a long time ago,
+
+where you can have named exports,
+
+or you can have a default export.
+
+So it makes sense in each component file
+
+to have the default export be the component itself.The rules really here that I would follow
+
+and recommend is you write a component in a file
+
+where the component name matches the file name.
+
+Dog.js has a Dog component.
+
+And that Dog component should be the default export,
+
+from that file.
+
+The Greeter component should be the default export
+
+from the Greeter file.
+
+named exports are written in curly braces export {Dog,add}  --Dog is a component,add is a function  (components are also a kind of functions)
+while importing named components or functions in file we need to write the exact same thing in the curly braces where we are importing like --import {Dog,add} from "./Dog.jsx"
+why we use named exports  -- if you ever need to export more than one thing from the file then you use named exports
+//
+
+LoginForm like this.
+
+It gives me a lovely error saying
+
+unterminated JSX contents.
+
+So when JSX is parsing
+
+basically when Babel is parsing our JSX code,
+
+it's looking for a closing tag always.
+
+So in our dog component, it sees the opening tag
+
+and then the text, and then the closing tag.
+
+And the way it knows it's a closing tag is with that slash.
+
+So when we don't have that slash
+
+it thinks this is the opening tag of some other element.
+
+
+You can only return a single element from a component.
+
+You can have as many elements as you want
+
+in that single top level element
+
+but you can only return one thing.
+
+//fragments
+you can use the React fragment syntax.
+
+If you ever see this, that's what it means.
+
+It's just an empty wrapper element
+
+that won't result in any actual markup in the document,
+
+but it satisfies JSX requirements.
+
+//evaluating js expressions in jsx
+
+As soon as I have curly braces.
+
+This escapes the JSX content
+
+and instead it will be treated as pure JavaScript
+
+and evaluated.
+
+//dynamic value integration in component
+
+The way that we add these dynamic values into our components
+
+is by using these curly braces.
+
+normally our component name should be singular
+
+//styling react
+
+The conventional way
+
+of styling React is to take our top level component.
+
+Like let's go to our die component right here.
+
+The top level component is this H2.
+
+And we'll give it a class
+
+and it should match the name of the component like Die.
+
+So class name is the replacement for class.
+
+//where do i right my styles
+
+What we normally do is make a CSS style sheet that has
+
+the exact same name as our component and we write our styles
+
+for each component in a separate file.
+
+You don't have to do that either.
+
+You could write all your styles in one style sheet.
+
+There's nothing React specific that requires us to do this
+
+but this is the common pattern, in our source directory.
+
+//*** webpack is what bundling alll of our code together
+it is making the imports and exports work
+
+babel compiles our jsx into pure js ***//
+
+So you make your CSS file, have the name again
+
+conventionally, have the name match, the component name
+
+.CSS, and then we have to import that file to
+
+tell Webpack, Hey, please include this CSS
+
+in your final big CSS bundle that you build.
+
+I could instead just write all my styles in one place.
+
+I could put all the styles in this styles.css
+
+for example, and it would work, but then it's kind
+
+of a pain.
+
+If I have a hundred components, it's gonna be a long file
+
+and it's gonna be difficult to know where to change styles.
+this class name will be assigned to the top level
+
+whatever the top level element is in this case, the div.
+
+npm run dev--this launches the web server at the address in our current case as given below under local
+
+ npm run dev
+
+> react-app1@0.0.0 dev
+> vite
+
+
+  VITE v5.4.3  ready in 428 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+  vite--it sets basic development environment for us
+  there is live dev server working after running npm run dev in project folder it automaticcally refresshes
+
+//the default file extensions for React components are .jsx.
+
+It doesn't technically matter if you do .js or .jsx.
+
+We can use JSX syntax in either.
+
+What's nice about using the .jsx extension
+
+is that it just makes it clear to anyone looking
+
+at this file that it definitely contains React components
+
+or at least JSX syntax
+
+but it won't actually make a difference.
+
+//Make all of your overarching general styles
+
+in the index.css.
+
+Anything specific to a component
+
+goes in that component style sheet.
+
+And that's really all there is to Vite.
+
+It includes some ESLint configuration,
+
+not to mention all these dependencies you can see here
+
+but it does all the heavy lifting for us.
+
+It makes a dev server, it sets up Babel,
+
+it does the transpiling of JSX,(Transpiling JSX refers to the process of converting JSX (JavaScript XML) code into regular JavaScript code that browsers can understand)
+
+it also does all the bundling and builds us our final build.
+
+It does a lot of work for us
+
+//props is just function argument it's just there is a layer of abstraction
+So, props is just function arguments.
+
+It's just there's a layer of abstraction
+
+where we're never really executing
+
+the function like this, right?
+
+I'm not doing greeter Bill.
+
+Instead, I'm executing it using this component syntax,
+
+jsx syntax
+
+and I pass my property values as a key value pair
+
+like an HTML attribute.
+
+And something that's very common to do with props
+
+is to destructure them.
+//
+So to pass something as a number,
+
+we use those curly braces with our props.
+
+when youre destructuring in your component defination you can set the default initial value for prop if it's missing
+
+//in css properties are kebab cased meaning there is a hyphen or dash between them
+//in the case of react and javascript we camelCase them
+
+//implicit and explicit return
+
+Great question! In JavaScript, arrow functions can return values in two ways, depending on whether you use parentheses or curly braces.
+
+1. Using Parentheses (())
+When you use parentheses around an expression in an arrow function, it implies an implicit return. This means the function will automatically return the value without needing the return keyword.
+
+Example:
+
+jsx
+Copy code
+const Lis = colors.map((color, index) => (
+  <li key={index}>{color}</li>
+));
+Here, the parentheses are wrapping the JSX expression (<li>...</li>), and it's implicitly returned by the arrow function. This is common when the function body consists of a single expression like JSX.
+
+2. Using Curly Braces ({})
+When you use curly braces in an arrow function, you need to explicitly specify a return statement if you want to return a value.
+
+Example:
+
+jsx
+Copy code
+const Lis = colors.map((color, index) => {
+  return <li key={index}>{color}</li>;
+});
+With curly braces, the function doesn't return anything unless you explicitly write return.
+
+//ESLint
+
+Anytime I write props, whatever the prop is
+
+I'm getting a complaint from eslint.
+
+Now eslint is something we really
+
+haven't seen much of in this course.
+
+It's a tool, it's a linter that helps us write better code.
+
+It's configured, it's already installed and configured
+
+as part of each new Vite React app that we make.
+
+There's a file called eslint.cjs right here.
+
+Where are you? Nope, right there.
+
+Sorry. Here it is.
+
+This file tells eslint that it's supposed to
+
+use certain plugins, the React recommended plugins,
+
+JSX plugins, React hooks plugins.
+
+Basically, it configures the rules of what
+
+eslint should care about and it helps a lot of the time.
+
+It helps us avoid mistakes like
+
+if we didn't have a key prop in here.
+
+It's complaining to us right here, missing key prop.
+
+So instead of us having to wait
+
+to get this error in the browser,
+
+VS code is letting us know ahead of time because of eslint.
+
+
+//react
+
+//it is common for the react/jsx files that the default export is the component itself
+//there are two t
+
+//app is top level component of react application
