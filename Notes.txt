@@ -8,6 +8,8 @@ ts--plain typescript files
 tsx--react components
 there are two ways to create a react component by javascript class or by functiion
 
+toku--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
+
 JSX (JavaScript XML) is a syntax extension for JavaScript, commonly used with React to describe what the UI should look like. It allows you to write HTML elements directly within JavaScript code, making the code easier to understand and maintain.
 
 For example, in JSX, instead of writing HTML in separate files, you write something like this:
@@ -387,3 +389,7 @@ VS code is letting us know ahead of time because of eslint.
 //there are two t
 
 //app is top level component of react application
+
+//in react component if we want to change the state based on previous state then we can give state updater callback(function ) to the setState function
+//useState will ignore the initial value that is given to it after the first render,  we can't pass state upwards ,we put the state as high as we need it but no further
+//we have state in component we can pass it down as a prop -----*****imp**************------------
